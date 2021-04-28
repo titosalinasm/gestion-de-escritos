@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Weblogic-Application-Version: 1.0.1_f202008261644
+Built-By: uds
+Created-By: Apache Maven 3.5.2
+Build-Jdk: 1.8.0_131
+Implementation-Vendor: INDECOPI - GTI - UDS

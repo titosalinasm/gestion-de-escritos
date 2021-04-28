@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee">
+    <application>
+        <message-bundle>indecopi.gob.pe.messages</message-bundle>
+        <resource-bundle>
+            <base-name>indecopi.gob.pe.messages</base-name>
+            <var>msgs</var>
+        </resource-bundle>
+    </application>
+    
+    <managed-bean>
+        <managed-bean-name>clsGestionEscritosSrv</managed-bean-name>
+        <managed-bean-class>indecopi.gob.pe.srv.ClsGestionEscritosSrv</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+
+</faces-config>

@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://java.sun.com/jsf/html" 
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:a4j="http://richfaces.org/a4j" 
+xmlns:rich="http://richfaces.org/rich">
+   <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    </head>
+    <body>
+        <rich:modalPanel id="modMsg" autosized="true" width="300">
+             <f:facet name="controls">
+                <h:panelGroup>
+                    <h:graphicImage id="hidePanelModMsg" value="/imagenes/btnCerrar.png"/>
+                    <rich:componentControl for="modMsg" attachTo="hidePanelModMsg" operation="hide"
+                                           event="onclick"/>
+                </h:panelGroup>
+            </f:facet>
+            <f:facet name="header">
+                <h:outputText value="Mensaje"/>
+            </f:facet>
+             <a4j:form id="frmMsg" ajaxSubmit="true">
+            <center>
+                 <h:outputText rendered="#{clsGestionEscritosSrv.blFlagMensaje}" value="#{clsGestionEscritosSrv.vcFMensaje}" />
+                <br></br>
+                 <br></br>
+                 <a4j:commandButton 
+                                                value="Aceptar"
+                                                >
+                                        <a4j:support event="onclick"
+                                                     onsubmit="#{rich:component('modMsg')}.hide();"
+                                                     >
+                                        </a4j:support>
+                                        
+                 </a4j:commandButton>
+            </center>
+            </a4j:form>
+            
+        </rich:modalPanel>  
+    </body>
+</html>

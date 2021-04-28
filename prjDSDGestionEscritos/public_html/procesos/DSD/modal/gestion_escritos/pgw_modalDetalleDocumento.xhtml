@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://java.sun.com/jsf/html" 
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:a4j="http://richfaces.org/a4j" 
+xmlns:rich="http://richfaces.org/rich">
+   <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    </head>
+    <body>
+       <rich:modalPanel id="modDetalleDocumento" autosized="true" width="400">
+            <f:facet name="controls">
+                <h:panelGroup>
+                    <h:graphicImage id="hidePanelModDetalleDocumento" value="/imagenes/btnCerrar.png"/>
+                    <rich:componentControl for="modDetalleDocumento" attachTo="hidePanelModDetalleDocumento" operation="hide"
+                                           event="onclick"/>
+                </h:panelGroup>
+            </f:facet>
+            <f:facet name="header">
+                <h:outputText value="Detalle del documento"/>
+            </f:facet>
+            <a4j:form id="frmDetalleArchivos" ajaxSubmit="true" target="_blank">
+
+              <h:panelGrid columns="1" style="width:395px;" styleClass="style_top_align">
+                <h:panelGrid columns="2" border="0" cellpadding="3" cellspacing="3"
+                             columnClasses="tipo_colNumero01,tipo_colNumero02,tipo_colNumero03,tipo_colNumero04">
+                     
+                    <h:outputText value="Sede: " style="font-weight: 700; font-size:12px;" />
+                    <h:outputText value="#{clsGestionEscritosSrv.objDocumentoDetalle.vcSedeNombre}"  style="font-size:12px;" />
+                    
+                    <h:outputText value="Área:" style="font-weight: 700; font-size:12px;" />
+                    <h:outputText value="#{clsGestionEscritosSrv.objDocumentoDetalle.vcAreaNombre}"  style="font-size:12px;" />
+                    
+                    <h:outputText value="Observación:" style="font-weight: 700; font-size:12px;" />
+                    <h:outputText value="#{clsGestionEscritosSrv.objDocumentoDetalle.vcObservacionCompleta}"  style="font-size:12px;" />
+                    
+                    <h:outputText value="Correlativo:" style="font-weight: 700; font-size:12px;" />
+                    <h:outputText value="#{clsGestionEscritosSrv.objDocumentoDetalle.vcCorrelativo}"  style="font-size:12px;" />
+                    
+                    <h:outputText value="Remitente:" style="font-weight: 700; font-size:12px;" />
+                    <h:outputText value="#{clsGestionEscritosSrv.objDocumentoDetalle.vcRemitente}"  style="font-size:12px;" />
+                    
+                </h:panelGrid>
+				<rich:dataTable id="dtb_lst_archivos_det"
+                                            value="#{clsGestionEscritosSrv.lstArchivo}" var="record"
+                                            width="100%" rows="10" rowKeyVar="row"
+                                            onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+                                            onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
+                                            >
+                                 
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="#"/>
+                                        </f:facet>
+                                          <h:outputText style="font-size:9px" value="#{row + 1}"  />
+                                    </rich:column>
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="Nombre(s)"/>
+                                        </f:facet>
+                                        <h:outputText value="#{record.vcNombreOriginal}"/>
+                                    </rich:column>
+                                     <rich:column style="text-align:center;">
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="Tamaño(Bytes)"/>
+                                        </f:facet>
+                                        <h:outputText style="text-align:center;" value="#{record.nuLong}"/>
+                                    </rich:column>
+                                     <rich:column style="text-align:center;">
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="Descargar"/>
+                                        </f:facet>
+                                      <a4j:commandButton 
+                                                value="Descargar"
+                                                >
+                                        <a4j:support event="onclick"
+                                                     action="#{clsGestionEscritosSrv.getDescargarEscritos(record)}" 
+                                                     onsubmit="#{rich:component('panProcesando')}.show()"
+                                                     oncomplete="#{rich:component('panProcesando')}.hide();document.getElementById('frmDescargar:btn_descargar').click();"
+                                                     >
+                                        </a4j:support>
+                                        
+                                    </a4j:commandButton>
+                                    </rich:column>
+
+                                            
+                      <f:facet name="footer">
+                       <rich:datascroller id="ds_lst_archivos_det" for="dtb_lst_archivos_det" maxPages="100" width="100%" rendered="true"/>
+                       </f:facet>                   
+                        </rich:dataTable>                    
+                 
+               </h:panelGrid>
+            </a4j:form>
+        </rich:modalPanel>
+    </body>
+</html>

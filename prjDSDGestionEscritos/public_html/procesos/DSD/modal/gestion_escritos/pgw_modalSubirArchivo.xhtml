@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://java.sun.com/jsf/html" 
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:a4j="http://richfaces.org/a4j" 
+xmlns:rich="http://richfaces.org/rich">
+   <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    </head>
+    <body>
+       <rich:modalPanel id="modSubirArchivo" autosized="true" >
+            <f:facet name="controls">
+                <h:panelGroup>
+                    <h:graphicImage id="hidePanelModSubirArchivo" value="/imagenes/btnCerrar.png"/>
+                    <rich:componentControl for="modSubirArchivo" attachTo="hidePanelModSubirArchivo" operation="hide"
+                                           event="onclick"/>
+                </h:panelGroup>
+            </f:facet>
+            <f:facet name="header">
+                <h:outputText value="Subir archivo"/>
+            </f:facet>
+            <a4j:form id="frmSubirArchivo" ajaxSubmit="true" target="_blank">
+
+                    <h:panelGrid columns="2" cellpadding="3"  >
+                    
+                      <h:outputText  value="Tipo de archivo: " style="font-size: 12px;"/>
+                     <h:selectOneMenu required="true" disabled="true" width="200" style="width:200px;" value="#{clsGestionEscritosSrv.objDocumentoVinExpeM.nuIdTipoArchivo}">
+                                        <f:selectItems value="#{clsGestionEscritosSrv.objFiltroBean.lstTipoArchivo}"/>
+                     </h:selectOneMenu>
+                     
+                     <h:outputText  value="Ajuntar archivos: " style="font-size: 12px;"/>
+                      <rich:fileUpload id="fileAdjuntaDocumento"
+                                 fileUploadListener="#{clsGestionEscritosSrv.listenerDocumentos}"
+                                 immediateUpload="true"
+                                 acceptedTypes="*" 
+                                 maxFilesQuantity="1"
+                                 addControlLabel="Subir archivo..."
+                                 clearAllControlLabel="Eliminar"
+                                 clearControlLabel="Eliminar"
+                                 stopEntryControlLabel="Detener"
+                                 uploadControlLabel="Subir archivo"
+                                 doneLabel="Terminado" 
+                                 listWidth="200px"
+                                 listHeight="50px" 
+                                 autoclear="true"
+                                
+                                 alt="Se permiten la extension doc">
+                           
+                    <f:facet name="label">
+                      <h:outputText value="{_KB}KB de {KB}KB cargados --- {mm}:{ss}"/>
+                    </f:facet>
+                    
+                    <a4j:support event="onuploadcomplete"
+                                 oncomplete="javaScript:Richfaces.hideModalPanel('modSubirArchivo');"
+                                 reRender="frm_vincular_expediente">
+                    </a4j:support>
+                            
+                    <a4j:support event="onclear" 
+                                 reRender="fileAdjuntaDocumento">
+                    </a4j:support>
+                    
+                </rich:fileUpload>
+                     </h:panelGrid>
+                     
+            
+            </a4j:form>
+        </rich:modalPanel>
+    </body>
+</html>

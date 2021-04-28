@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:h="http://java.sun.com/jsf/html" 
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:a4j="http://richfaces.org/a4j" 
+xmlns:rich="http://richfaces.org/rich">
+   <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    </head>
+    <body>
+       <rich:modalPanel id="modVincular" autosized="true" width="400">
+            <f:facet name="controls">
+                <h:panelGroup>
+                    <h:graphicImage id="hidePanelModVincular" value="/imagenes/btnCerrar.png"/>
+                    <rich:componentControl for="modVincular" attachTo="hidePanelModVincular" operation="hide"
+                                           event="onclick"/>
+                </h:panelGroup>
+            </f:facet>
+            <f:facet name="header">
+                <h:outputText value="Vincular a un expediente"/>
+            </f:facet>
+              <a4j:form id="frmVincularExpediente" ajaxSubmit="true">
+
+              <h:panelGrid columns="1" style="width:395px;" styleClass="style_top_align">
+                <h:panelGrid columns="2" border="0" cellpadding="3" cellspacing="3"
+                             columnClasses="tipo_colNumero01,tipo_colNumero02,tipo_colNumero03,tipo_colNumero04">
+                     
+                    <h:outputText value="Sede: " style="font-weight: 700; font-size:12px;" />
+                    <h:outputText value="#{clsGestionEscritosSrv.objDocumentoVincular.vcSedeNombre}"  style="font-size:12px;" />
+                    
+                    <h:outputText value="Área:" style="font-weight: 700; font-size:12px;" />
+                    <h:outputText value="#{clsGestionEscritosSrv.objDocumentoVincular.vcAreaNombre}"  style="font-size:12px;" />
+
+                    <h:outputText value="Correlativo:" style="font-weight: 700; font-size:12px;" />
+                    <h:outputText value="#{clsGestionEscritosSrv.objDocumentoVincular.vcCorrelativo}"  style="font-size:12px;" />
+                    
+                    <h:outputText value="Remitente:" style="font-weight: 700; font-size:12px;" />
+                    <h:outputText value="#{clsGestionEscritosSrv.objDocumentoVincular.vcRemitente}"  style="font-size:12px;" />
+                    
+                    <h:outputText value="Ejemplo:" style="font-weight: 700; font-size:12px; color:Lime; float: right;" />
+                    <h:outputText value="########-####" style="font-weight: 700; font-size:12px; color:Lime;" />
+                    
+                    <h:outputText value="Nro Expediente:" style="font-weight: 700; font-size:12px;" />
+                    <h:inputText  value="#{clsGestionEscritosSrv.objDocumentoVincular.vcNroExpediente}"/>
+                </h:panelGrid>
+		  <h:panelGrid columns="2"  styleClass="style_top_align" style="text-align:center; width:100%;">
+                 <a4j:commandButton 
+                                                       value="Vincular"
+                                                       style="float:right"
+                                                      >
+                                        <a4j:support event="onclick"
+                                                      action="#{clsGestionEscritosSrv.doVincularExpediente()}"
+                                                     reRender="frmResultados, frmMsg"
+                                                     onsubmit="#{rich:component('panProcesando')}.show();"
+                                                     oncomplete="#{rich:component('panProcesando')}.hide();#{rich:component('modVincular')}.hide();#{rich:component('modMsg')}.show();">
+                                        </a4j:support>
+                  </a4j:commandButton>
+                  
+                  <a4j:commandButton 
+                                                       value="Cancelar"
+                                                       style="float:left"
+                                                      >
+                                        <a4j:support event="onclick"
+                                                     onsubmit="#{rich:component('modVincular')}.hide();">
+                                        </a4j:support>
+                </a4j:commandButton>
+                 </h:panelGrid> 	
+               </h:panelGrid>
+            </a4j:form>
+        </rich:modalPanel>
+    </body>
+</html>

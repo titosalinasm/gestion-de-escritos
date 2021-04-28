@@ -1,0 +1,218 @@
+#ot_general_res_renov_titulo{
+    font-size: 12px;
+}
+#ot_generacion_tab{
+    font-size: 13px;
+}
+
+#bt_notificacion_marca_filtro_buscar{
+    font-size: 13px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+#bt_notificacion_marca_filtro_limpiar{
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+#sep_notifican_marca{
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+#bt_notificacion_cargar_word{
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 20px;
+}
+
+#bt_notificacion_convertir_word_pdf{
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+#bt_notificacion_firma_digital{
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+#bt_notificacion_enviar_a_casilla{
+    font-size: 12px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 100px;
+  background-color: #bed6f8;
+  color: #000;
+  text-align: left;
+  text-justify: auto;
+  padding: 5px 0;
+  border-radius: 6px;
+  padding: 5px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+.tooltip .tooltiptext {
+  width: 120px;
+  top: 100%;
+  left: 50%; 
+  margin-left: -60px; /* Use half of the width (120/2 = 60), to center the tooltip */
+}
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;  /* At the top of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #bed6f8 transparent;
+}
+
+
+#cl_conversion_not_filtro_fechaInicio{
+    border-radius: 5px;
+    height: 14px;
+    width: 100px;
+}
+
+/*panModal loadin*/
+.lds-ring {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.lds-ring div {
+  box-sizing: border-box;
+  display: block;
+  position: absolute;
+  width: 51px;
+  height: 51px;
+  margin: 6px;
+  border: 6px solid #fdd;
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: #FF5252 transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+/*panModalLoading*/
+
+/*loading v2 inicio*/
+.lds-ellipsis {
+  display: inline-block;
+  position: relative;
+  width: 64px;
+  height: 64px;
+}
+.lds-ellipsis div {
+  position: absolute;
+  top: 27px;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #bed6f8;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.lds-ellipsis div:nth-child(1) {
+  left: 6px;
+  animation: lds-ellipsis1 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(2) {
+  left: 6px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(3) {
+  left: 26px;
+  animation: lds-ellipsis2 0.6s infinite;
+}
+.lds-ellipsis div:nth-child(4) {
+  left: 45px;
+  animation: lds-ellipsis3 0.6s infinite;
+}
+@keyframes lds-ellipsis1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes lds-ellipsis3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes lds-ellipsis2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(19px, 0);
+  }
+}
+
+.style_top_align td{
+     vertical-align: top; 
+}
+
+.zoom{
+    width:50px;
+    transition: transform .2s;
+    margin: 0 auto;
+}
+
+.zoom:hover{
+    transform: scale(3.5); 
+}
+
+.zoom-12{
+
+   transition: transform .2s;
+    margin: 0 auto; 
+}
+
+.zoom-12:hover{
+ transform: scale(2.0);    
+}

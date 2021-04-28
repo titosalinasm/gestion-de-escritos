@@ -1,0 +1,574 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:h="http://java.sun.com/jsf/html" 
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:a4j="http://richfaces.org/a4j" 
+xmlns:rich="http://richfaces.org/rich">
+
+    <head>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+        <meta content="IE=8" http-equiv="X-UA-Compatible"/>
+        <script language="JavaScript" charset="ISO-8859-1" type="text/javascript" src="${facesContext.externalContext.requestContextPath}/js/jsMain.js"></script>
+        <link href="${facesContext.externalContext.requestContextPath}/css/main.css" rel="stylesheet" type="text/css"/>
+        <link href="${facesContext.externalContext.requestContextPath}/css/notificacionMarca.css?v=0004" rel="stylesheet" type="text/css"/>
+        <link href="${facesContext.externalContext.requestContextPath}/fonts/font-awesome/css/font-awesome.min.css? v=001" rel="stylesheet" type="text/css"/>
+        <link href="${facesContext.externalContext.requestContextPath}/css/registroMarcas.css?v=005" rel="stylesheet" type="text/css"/>
+        <link href="../imagenes/favicon.ico" rel="shortcut icon"/>
+        <title>
+            Gestion de escritos
+        </title>
+       </head>
+    <body>
+       <h:form id="frmDescargar" >
+                 <h:commandButton id="btn_descargar" 
+                                   style="display:none;"
+                                   action="#{clsGestionEscritosSrv.doDescargarModalAuxiliar}" >
+                </h:commandButton>
+
+       </h:form>
+       
+    <rich:panel>
+    
+            <h:panelGrid columnClasses="panel" border="0" columns="2">
+                <rich:panel style="width:830px;">
+                    <h:panelGrid  columns="2" >
+                    <h:graphicImage url="/imagenes/icoUser.svg" style="width:15px"/> 
+                    <h:outputText  style="font-size: 12px;" value="#{clsGestionEscritosSrv.objUsuarioBean.vcArea}/#{clsGestionEscritosSrv.objUsuarioBean.vcSubArea} #{clsGestionEscritosSrv.objUsuarioBean.vcNombre}/#{clsGestionEscritosSrv.objUsuarioBean.vcEmail}"/>
+                    </h:panelGrid>
+                    <rich:tabPanel switchType="client">
+                    <f:facet name="header" styleclass="header-css-indecopi">
+                        <h:outputText value="Gestion de escritos"  />
+                    </f:facet>
+                    <rich:tab  label="Escritos presentados" rendered="true">
+                    <rich:panel>
+                        <f:facet name="header">
+                            <h:outputText value="Filtros"/>
+                        </f:facet>
+                      <a4j:form id="frmControles" ajaxsubmit="true">
+                    <h:panelGrid id="pgGeneracion_filtro_res" columns="4" cellpadding="3" >
+                    <h:outputText  value="#{msgs['ot.generacion.res.filtro.fechaInicio']}" style="font-size: 12px;"/>
+                    <rich:calendar id="cl_filtro_fechaIni" value="#{clsGestionEscritosSrv.objFiltroBean.dtFechaIni}"
+                                                   locale="en/ES" datePattern="dd-MM-yyyy" cellWidth="12px" cellHeight="22px"
+                                                   inputStyle="width:65px"
+                                                   isDayEnabled="isPresDayEnabled"
+                                                                dayStyleClass="getPresDisabledStyle"
+                                                   >
+                     </rich:calendar>
+                     <h:outputText  value="#{msgs['ot.generacion.res.filtro.fechaFin']}" style="font-size: 12px;"/>
+                    <rich:calendar id="cl_filtro_fechaFin" value="#{clsGestionEscritosSrv.objFiltroBean.dtFechaFin}"
+                                                   locale="en/ES" datePattern="dd-MM-yyyy" cellWidth="12px" cellHeight="22px"
+                                                   inputStyle="width:65px"
+                                                   isDayEnabled="isPresDayEnabled"
+                                                                dayStyleClass="getPresDisabledStyle"
+                                                   >
+                     </rich:calendar>
+                     
+                     <h:outputText  value="Local destino: " style="font-size: 12px;"/>
+                     <h:selectOneMenu required="true"  style="width:200px;"  width="200" value="#{clsGestionEscritosSrv.objFiltroBean.nuIdLocal}">
+                                        <f:selectItems value="#{clsGestionEscritosSrv.objFiltroBean.lstLocales}"/>
+                     </h:selectOneMenu>
+                     
+                    <h:outputText  value="Dependencia: " style="font-size: 12px;"/>
+                     <h:selectOneMenu required="true" width="200" style="width:200px;" value="#{clsGestionEscritosSrv.objFiltroBean.nuIdDependencia}">
+                                        <f:selectItems value="#{clsGestionEscritosSrv.objFiltroBean.lstDependencia}"/>
+                     </h:selectOneMenu>
+                     
+                     <h:outputText  value="Tipo de documento: " style="font-size: 12px;"/>
+                     <h:selectOneMenu required="true"  style="width:200px;"  width="200" value="#{clsGestionEscritosSrv.objFiltroBean.nuIdTipoDocSgd}">
+                                        <f:selectItems value="#{clsGestionEscritosSrv.objFiltroBean.lstTipoDocSGD}"/>
+                     </h:selectOneMenu>
+                     
+                     
+                     <h:outputText  value="Tipo de documento: " style="font-size: 12px;"/>
+                     <h:selectOneMenu required="true" width="200" value="#{clsGestionEscritosSrv.objFiltroBean.nuIdTipoDocId}">
+                                        <f:selectItems value="#{clsGestionEscritosSrv.objFiltroBean.lstTipoDocumento}"/>
+                     </h:selectOneMenu>
+                     
+                      <h:outputText value="Número de Documento: " style="font-size: 12px;"/>
+                      <h:inputText  value="#{clsGestionEscritosSrv.objFiltroBean.vcNroDocIdentidad}"/>
+                      
+                      <h:outputText value="Remitente: " style="font-size: 12px;"/>
+                      <h:inputText  value="#{clsGestionEscritosSrv.objFiltroBean.vcRemitente}"/>
+                      
+                      <h:outputText value="Correlativo: " style="font-size: 12px;"/>
+                      <h:inputText  value="#{clsGestionEscritosSrv.objFiltroBean.vcNroCorrelativo}"/>
+
+                    </h:panelGrid>
+                     <h:panelGrid columns="2" style="text-align:center; width:100%;">
+                               <a4j:commandButton id="btn_buscar_documentos"
+                                                       value="#{msgs['bt.conversion.not.filtro.buscar']}"
+                                                      style="float:right"
+                                                      >
+                                        <a4j:support event="onclick"
+                                                      action="#{clsGestionEscritosSrv.doLstDocumentos()}"
+                                                     reRender="frmResultados"
+                                                     onsubmit="#{rich:component('panProcesando')}.show();"
+                                                     oncomplete="#{rich:component('panProcesando')}.hide();">
+                                        </a4j:support>
+                                </a4j:commandButton>
+                             <a4j:commandButton 
+                                               id="btn_limpiar"
+                                                value="Limpiar"
+                                                style="float:left"
+                                                >
+                                        <a4j:support event="onclick"
+                                                     action="#{clsGestionEscritosSrv.doLimpiar()}" 
+                                                     onsubmit="#{rich:component('panProcesando')}.show();"
+                                                     oncomplete="#{rich:component('panProcesando')}.hide();"
+                                                     reRender="frmControles, frmResultados"
+                                                     >
+                                        </a4j:support>
+                                        
+                             </a4j:commandButton>
+                             
+                             </h:panelGrid>
+                             </a4j:form>
+                    </rich:panel>
+                     <rich:panel>
+                        <f:facet name="header">
+                            <h:outputText value="Resultados"/>
+                        </f:facet>
+                      <a4j:form id="frmResultados" ajaxsubmit="true">
+                        <rich:dataTable id="dtb_documentos"
+                                            value="#{clsGestionEscritosSrv.lstDocumentos}" var="result"
+                                            width="100%" rows="10" rowKeyVar="row"
+                                            onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+                                            onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
+                                            >
+                                     <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="Correlativo"/>
+                                        </f:facet>
+                                        <h:outputText value="#{result.vcCorrelativo}"/>
+                                    </rich:column>
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="Remitente"/>
+                                        </f:facet>
+                                        <h:panelGrid columns="1" style="font-size:9px">
+                                        <h:outputText value="#{result.vcRemitente}"/>
+                                        <h:outputText value="#{result.vcRepresentado}"/>
+                                        </h:panelGrid>
+                                    </rich:column>
+                                    
+                                      <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="Nro. Documento"/>
+                                        </f:facet>
+                                        <h:outputText value="#{result.vcCorreo}"/>
+                                    </rich:column>
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="Telefono"/>
+                                        </f:facet>
+                                        <h:outputText value="#{result.vcNroTelefonico}"/>
+                                    </rich:column>
+                                     <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="Número de expediente"/>
+                                        </f:facet>
+                                        <h:outputText value="#{result.vcNroExpediente}"/>
+                                    </rich:column>
+                                     <rich:column style="text-align:center;">
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="Ver archivos"/>
+                                        </f:facet>
+                                     <a4j:commandButton 
+                                                value="Ver"
+                                                >
+                                        <a4j:support event="onclick"
+                                                     action="#{clsGestionEscritosSrv.doVerDetalleDoc(result)}" 
+                                                     onsubmit="#{rich:component('modDetalleDocumento')}.show();#{rich:component('panProcesando')}.show();"
+                                                     oncomplete="#{rich:component('panProcesando')}.hide();"
+                                                     reRender="frmDetalleArchivos"
+                                                     >
+                                        </a4j:support>
+                                        
+                                    </a4j:commandButton>
+                                    </rich:column>
+                                    <rich:column style="text-align:center;">
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="Vincular a un expediente"/>
+                                        </f:facet>
+                                     <a4j:commandButton 
+                                                value="Vincular"
+                                                rendered="#{result.blVinculado}"
+                                                >
+                                        <a4j:support event="onclick"
+                                                     action="#{clsGestionEscritosSrv.doVerVincular(result)}" 
+                                                     onsubmit="#{rich:component('modVincular')}.show();#{rich:component('panProcesando')}.show();"
+                                                     oncomplete="#{rich:component('panProcesando')}.hide();"
+                                                     reRender="frmVincularExpediente"
+                                                     >
+                                        </a4j:support>
+                                        
+                                    </a4j:commandButton>
+                               
+                                    
+                                    
+                                    </rich:column>
+                                            
+                      <f:facet name="footer">
+                       <rich:datascroller id="ds_documentos" for="dtb_documentos" maxPages="100" width="100%" rendered="true"/>
+                       </f:facet>                   
+                        </rich:dataTable>                    
+                      </a4j:form>
+                      </rich:panel>
+                    </rich:tab>
+                    
+                    <rich:tab  label="Escritos vinculados" rendered="true">
+                    <rich:panel>
+                        <f:facet name="header">
+                            <h:outputText value="Filtros"/>
+                        </f:facet>
+                    <a4j:form id="frm_exp_vinculados" ajaxsubmit="true">
+                    <h:panelGrid  columns="4" cellpadding="3" >
+                    <h:outputText  value="#{msgs['ot.generacion.res.filtro.fechaInicio']}" style="font-size: 12px;"/>
+                    <rich:calendar  value="#{clsGestionEscritosSrv.objFiltroExpeVin.dtFechaIni}"
+                                                   locale="en/ES" datePattern="dd-MM-yyyy" cellWidth="12px" cellHeight="22px"
+                                                   inputStyle="width:65px"
+                                                   isDayEnabled="isPresDayEnabled"
+                                                                dayStyleClass="getPresDisabledStyle"
+                                                   >
+                     </rich:calendar>
+                     <h:outputText  value="#{msgs['ot.generacion.res.filtro.fechaFin']}" style="font-size: 12px;"/>
+                    <rich:calendar  value="#{clsGestionEscritosSrv.objFiltroExpeVin.dtFechaFin}"
+                                                   locale="en/ES" datePattern="dd-MM-yyyy" cellWidth="12px" cellHeight="22px"
+                                                   inputStyle="width:65px"
+                                                   isDayEnabled="isPresDayEnabled"
+                                                                dayStyleClass="getPresDisabledStyle"
+                                                   >
+                     </rich:calendar>
+                     
+                       <h:outputText  value="Tipo de vinculación: " style="font-size: 12px;"/>
+                     <h:selectOneMenu required="true" width="200" style="width:200px;" value="#{clsGestionEscritosSrv.objFiltroExpeVin.nuIdTipoVinculacion}">
+                                        <f:selectItems value="#{clsGestionEscritosSrv.objFiltroBean.lstTipoVinculacion}"/>
+                     </h:selectOneMenu>
+                     
+                     <h:outputText value="Nro. de expediente: " style="font-size: 12px;"/>
+                      <h:inputText style="width:200px;"  value="#{clsGestionEscritosSrv.objFiltroExpeVin.vcNroExpediente}"/>
+                      
+                      <h:outputText value="Nro. de doc: " style="font-size: 12px;"/>
+                      <h:inputText style="width:200px;"  value="#{clsGestionEscritosSrv.objFiltroExpeVin.vcNroDoc}"/>
+                      
+                      <h:outputText value="Correo: " style="font-size: 12px;"/>
+                      <h:inputText style="width:200px;"  value="#{clsGestionEscritosSrv.objFiltroExpeVin.vcCorrreo}"/>
+                      
+                      
+                     </h:panelGrid>
+                     
+                      <h:panelGrid columns="2" style="text-align:center; width:100%;">
+                               <a4j:commandButton id="btn_buscar_exp_vinculados"
+                                                       value="Buscar"
+                                                       style="float:right;"
+                                                      >
+                                        <a4j:support event="onclick"
+                                                      action="#{clsGestionEscritosSrv.doBuscarExpVin()}"
+                                                     reRender="frm_exp_vinculados"
+                                                     onsubmit="#{rich:component('panProcesando')}.show();"
+                                                     oncomplete="#{rich:component('panProcesando')}.hide();">
+                                        </a4j:support>
+                                </a4j:commandButton>
+                             <a4j:commandButton 
+                                                id="btn_limpiar_exp_vin"
+                                                value="Limpiar"
+                                                style="float:left;"
+                                                >
+                                        <a4j:support event="onclick"
+                                                     action="#{clsGestionEscritosSrv.doLimpiarExpVinculados()}" 
+                                                     onsubmit="#{rich:component('panProcesando')}.show();"
+                                                     oncomplete="#{rich:component('panProcesando')}.hide();"
+                                                     reRender="frm_exp_vinculados"
+                                                     >
+                                        </a4j:support>
+                      
+                             </a4j:commandButton>
+                             </h:panelGrid>
+                             
+                                  <rich:dataTable id="dt_exp_vinculados"
+                                            value="#{clsGestionEscritosSrv.lstExpedienteVincualdo}" var="result"
+                                            rows="10" rowKeyVar="row" style="width:100%; "
+                                            onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+                                            onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
+                                            >
+                                     <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="#"/>
+                                        </f:facet>
+                                        <h:outputText value="#{row+1}"/>
+                                    </rich:column>
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="Expediente"/>
+                                        </f:facet>
+                                        <h:panelGrid columns="1" style="font-size:9px">
+                                        <h:outputText value="#{result.vcNroExpediente}"/>
+                                        </h:panelGrid>
+                                    </rich:column>
+                                    
+                                      <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="Tipo de vinculacion"/>
+                                        </f:facet>
+                                        <h:outputText value="#{result.vcTipoVinculacion}"/>
+                                    </rich:column>
+                                    
+                                       <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="Nro de Doc."/>
+                                        </f:facet>
+                                        <h:outputText value="#{result.vcNroDoc}"/>
+                                    </rich:column>
+                                    
+                                       <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="Correo"/>
+                                        </f:facet>
+                                        <h:outputText value="#{result.vcCorreo}"/>
+                                    </rich:column>
+                                    
+                                     <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="Fecha de presentacion"/>
+                                        </f:facet>
+                                        <h:outputText value="#{result.dtFechaPresentacion}"/>
+                                    </rich:column>
+                                    
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="Fecha de vinculacion"/>
+                                        </f:facet>
+                                        <h:outputText value="#{result.dtFechaVinculacion}"/>
+                                    </rich:column>
+
+                                     <rich:column style="text-align:center;">
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="Acción"/>
+                                        </f:facet>
+                                     <a4j:commandButton 
+                                                value="Ver"
+                                                >
+                                        <a4j:support event="onclick"
+                                                     action="#{clsGestionEscritosSrv.doVerDetalleDocVinculados(result.nuIdExpVin)}" 
+                                                     onsubmit="#{rich:component('modDetalleArchivo')}.show();#{rich:component('panProcesando')}.show();"
+                                                     oncomplete="#{rich:component('panProcesando')}.hide();"
+                                                     reRender="frmDetalleArchivosVinculados"
+                                                     >
+                                        </a4j:support>
+                                        
+                                    </a4j:commandButton>
+                                    </rich:column>
+                                            
+                      <f:facet name="footer">
+                       <rich:datascroller id="ds_exp_vinculados" for="dt_exp_vinculados" maxPages="100" width="100%" rendered="true"/>
+                       </f:facet>                   
+                        </rich:dataTable>                    
+                    </a4j:form>
+                    </rich:panel>
+                    </rich:tab>
+                    
+                    <rich:tab  label="Presencial/Correo" rendered="true">
+                     <rich:panel>
+                        <f:facet name="header">
+                            <h:outputText value="Vincular un expediente"/>
+                        </f:facet>
+                      <a4j:form id="frm_vincular_expediente" ajaxsubmit="true">
+                    <h:panelGrid id="pgGeneracion_filtro_res" columns="4" cellpadding="3"   styleClass="arriba" >
+                    
+                      <h:outputText  value="Tipo de vinculación: " style="font-size: 12px;"/>
+                     <h:selectOneMenu required="true" width="200" style="width:200px;" value="#{clsGestionEscritosSrv.objDocumentoVinExpeM.nuIdTipoVinculacion}">
+                                        <f:selectItems value="#{clsGestionEscritosSrv.objFiltroBean.lstTipoVinculacion}"/>
+                     </h:selectOneMenu>
+                    
+                     <h:outputText  value="Fecha de presentación" style="font-size: 12px;"/>
+                    <rich:calendar id="cl_filtro_fechaFin" value="#{clsGestionEscritosSrv.objDocumentoVinExpeM.dtFechaPresentacion}"
+                                                   locale="en/ES" datePattern="dd-MM-yyyy" cellWidth="12px" cellHeight="22px"
+                                                   inputStyle="width:65px"
+                                                   isDayEnabled="isPresDayEnabled"
+                                                   dayStyleClass="getPresDisabledStyle"
+                                                   >
+                     </rich:calendar>
+                     
+                      <h:outputText value="Nro. de expediente: " style="font-size: 12px;"/>
+                      <h:inputText style="width:200px;"  value="#{clsGestionEscritosSrv.objDocumentoVinExpeM.vcNroExpediente}"/>
+                      
+                      <h:outputText value="Número de Documento: " style="font-size: 12px;"/>
+                      <h:inputText style="width:200px;" value="#{clsGestionEscritosSrv.objDocumentoVinExpeM.vcDocumento}"/>
+                      
+                      <h:outputText value="Doc. Referencia: " style="font-size: 12px;"/>
+                      <h:inputText style="width:200px;"  value="#{clsGestionEscritosSrv.objDocumentoVinExpeM.vcCorrelativo}"/>
+                      
+                      <h:outputText value="Celular: " style="font-size: 12px;"/>
+                      <h:inputText style="width:200px;" value="#{clsGestionEscritosSrv.objDocumentoVinExpeM.vcNroTelefonico}"/>
+                      
+                      <h:outputText value="Observaciones: " style="font-size: 12px; "/>
+                      <h:inputTextarea style="width:200px;" value="#{clsGestionEscritosSrv.objDocumentoVinExpeM.vcObservacionCompleta}"
+                                     maxlength="200"
+                                     rows="3" cols="50"
+                                    />
+                                    
+              <h:outputText value="Subir archivos:" style="font-size: 12px;"/>
+                <h:panelGrid  columns="1" >
+               <a4j:commandButton id="btn_agregar_archivo"
+                                                       value="Agregar Archivo +"
+                                                       style="float:left;"
+                                                      >
+                                        <a4j:support event="onclick"
+                                                      action="#{clsGestionEscritosSrv.doVerSubirArchivo()}"
+                                                     reRender="frmResultados"
+                                                     onsubmit="#{rich:component('modSubirArchivo')}.show();#{rich:component('panProcesando')}.show();"
+                                                     oncomplete="#{rich:component('panProcesando')}.hide();">
+                                        </a4j:support>
+              </a4j:commandButton>
+                        <rich:dataTable id="dtb_archivos_subidos"
+                                            value="#{clsGestionEscritosSrv.objDocumentoVinExpeM.lstArchivo}" var="result"
+                                            rows="5" rowKeyVar="row" style="width:250px; "
+                                            onRowMouseOver="this.style.backgroundColor='#F1F1F1'"
+                                            onRowMouseOut="this.style.backgroundColor='#{a4jSkin.tableBackgroundColor}'"
+                                            rendered="#{(clsGestionEscritosSrv.objDocumentoVinExpeM.lstArchivo.size()>0)}"
+                                            >
+                                     <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="#"/>
+                                        </f:facet>
+                                        <h:outputText value="#{row+1}"/>
+                                    </rich:column>
+                                    <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="Nombre de archivo"/>
+                                        </f:facet>
+                                        <h:panelGrid columns="1" style="font-size:9px">
+                                        <h:outputText value="#{result.vcNombreOriginal}"/>
+                                        </h:panelGrid>
+                                    </rich:column>
+                                    
+                                      <rich:column>
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="Tamaño(Bytes)"/>
+                                        </f:facet>
+                                        <h:outputText value="#{result.nuLong}"/>
+                                    </rich:column>
+
+                                     <rich:column style="text-align:center;">
+                                        <f:facet name="header">
+                                            <h:outputText  style="font-size:9px" value="Acción"/>
+                                        </f:facet>
+                                     <a4j:commandButton 
+                                                value="Eliminar"
+                                                >
+                                        <a4j:support event="onclick"
+                                                     action="#{clsGestionEscritosSrv.doVerDetalleDoc(result)}" 
+                                                     onsubmit="#{rich:component('modDetalleDocumento')}.show();#{rich:component('panProcesando')}.show();"
+                                                     oncomplete="#{rich:component('panProcesando')}.hide();"
+                                                     reRender="frmDetalleArchivos"
+                                                     >
+                                        </a4j:support>
+                                        
+                                    </a4j:commandButton>
+                                    </rich:column>
+                                            
+                      <f:facet name="footer">
+                       <rich:datascroller id="ds_archivos_subidos" for="dtb_archivos_subidos" maxPages="100" width="100%" rendered="true"/>
+                       </f:facet>                   
+                        </rich:dataTable>                    
+                 
+                          </h:panelGrid>
+                    </h:panelGrid>
+                   
+                     <br></br>
+                      <br></br>
+                     <h:panelGrid columns="2" style="text-align:center; width:100%;">
+                               <a4j:commandButton id="btn_agregar_documentos"
+                                                       value="Guardar"
+                                                       style="float:right;"
+                                                      >
+                                        <a4j:support event="onclick"
+                                                      action="#{clsGestionEscritosSrv.doVincularExpManual()}"
+                                                     reRender="frm_vincular_expediente, frmMsg"
+                                                     onsubmit="#{rich:component('panProcesando')}.show();"
+                                                     oncomplete="#{rich:component('panProcesando')}.hide();#{rich:component('modMsg')}.show();">
+                                        </a4j:support>
+                                </a4j:commandButton>
+                             <a4j:commandButton 
+                                                id="btn_limpiar"
+                                                value="Limpiar"
+                                                style="float:left;"
+                                                >
+                                        <a4j:support event="onclick"
+                                                     action="#{clsGestionEscritosSrv.doLimiparManual()}" 
+                                                     onsubmit="#{rich:component('panProcesando')}.show();"
+                                                     oncomplete="#{rich:component('panProcesando')}.hide();"
+                                                     reRender="frm_vincular_expediente"
+                                                     >
+                                        </a4j:support>
+                      
+                             </a4j:commandButton>
+                             </h:panelGrid>
+                             </a4j:form>
+                    </rich:panel>
+                
+                    </rich:tab>
+                    
+                    <rich:tab  label="Vinculacion automática" rendered="true">
+                     <rich:panel>
+                        <f:facet name="header">
+                            <h:outputText value="Acciones"/>
+                        </f:facet>
+                        <a4j:form id="frm_vincular_expediente_automatico" ajaxsubmit="true">
+                    <h:panelGrid id="pgGeneracion_filtro_res_automatico" columns="5" cellpadding="3" >
+                    <h:outputText  value="#{msgs['ot.generacion.res.filtro.fechaInicio']}" style="font-size: 12px;"/>
+                    <rich:calendar id="cl_filtro_fechaIni" value="#{clsGestionEscritosSrv.objFiltroAutomaticoBean.dtFechaIni}"
+                                                   locale="en/ES" datePattern="dd-MM-yyyy" cellWidth="12px" cellHeight="22px"
+                                                   inputStyle="width:65px"
+                                                   isDayEnabled="isPresDayEnabled"
+                                                                dayStyleClass="getPresDisabledStyle"
+                                                   >
+                     </rich:calendar>
+                     <h:outputText  value="#{msgs['ot.generacion.res.filtro.fechaFin']}" style="font-size: 12px;"/>
+                    <rich:calendar id="cl_filtro_fechaFin" value="#{clsGestionEscritosSrv.objFiltroAutomaticoBean.dtFechaFin}"
+                                                   locale="en/ES" datePattern="dd-MM-yyyy" cellWidth="12px" cellHeight="22px"
+                                                   inputStyle="width:65px"
+                                                   isDayEnabled="isPresDayEnabled"
+                                                                dayStyleClass="getPresDisabledStyle"
+                                                   >
+                     </rich:calendar>
+                     
+                                                       
+                                    <a4j:commandButton 
+                                                value="Vincular automáticamente"
+                                                >
+                                        <a4j:support event="onclick"
+                                                     action="#{clsGestionEscritosSrv.doVincularAsync()}" 
+                                                     onsubmit="#{rich:component('panProcesando')}.show();"
+                                                     oncomplete="#{rich:component('panProcesando')}.hide();"
+                                                     reRender="frmVincularExpediente"
+                                                     >
+                                        </a4j:support>
+                                        
+                                    </a4j:commandButton>
+                     </h:panelGrid>
+                     </a4j:form>
+                     </rich:panel>
+                     </rich:tab>
+                    </rich:tabPanel>
+                        
+                </rich:panel>
+
+              
+            </h:panelGrid>
+
+    
+      
+    </rich:panel>
+
+    <ui:include src="modal/gestion_escritos/pgw_modalLoadProcesando.xhtml"/>  
+    <ui:include src="modal/gestion_escritos/pgw_modalVincular.xhtml"/>  
+    <ui:include src="modal/gestion_escritos/pgw_modalDetalleDocumento.xhtml"/>  
+    <ui:include src="modal/gestion_escritos/pgw_modalSubirArchivo.xhtml"/>  
+    <ui:include src="modal/gestion_escritos/pgw_modalArchivos.xhtml"/> 
+     <ui:include src="modal/gestion_escritos/pgw_modalMsgVinculacion.xhtml"/> 
+     <ui:include src="modal/gestion_escritos/pgw_modalMsg.xhtml"/> 
+
+    </body>
+</ui:composition>

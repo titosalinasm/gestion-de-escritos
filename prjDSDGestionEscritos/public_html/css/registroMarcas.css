@@ -1,0 +1,38 @@
+/*Colores para el Formulario de Registro de Marcas*/
+.color-rojo{
+	color: #e61515;
+}
+.color-celeste{
+	color: #6dace2;
+}
+.color-plomo{
+	color: #656565;
+}
+.color-amarillo{
+	color: #f9c60f;
+}
+.color-verde{
+	color: #04a904
+}
+.color-azul{
+	color: #104877;
+}
+.color-morado{
+	color: #642cff;
+}
+.color-celeste-pastel{
+        color: #bed6f8;    
+}
+
+
+#panel_leyenda i{
+	padding: 2px 0px;
+}
+
+.arriba{
+    vertical-align: top;
+}
+
+.arriba td{
+    vertical-align: top;
+}

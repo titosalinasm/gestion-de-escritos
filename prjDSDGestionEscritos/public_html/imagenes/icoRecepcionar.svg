@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="8.8222303mm"
+   height="5.2379231mm"
+   viewBox="0 0 8.8222303 5.2379232"
+   version="1.1"
+   id="svg877"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="icoRecepcionar.svg">
+  <defs
+     id="defs871" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="16"
+     inkscape:cx="16.085218"
+     inkscape:cy="7.5999154"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="1432"
+     inkscape:window-y="118"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       position="0.87961315,5.2379228"
+       orientation="0,1"
+       id="guide901"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata874">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-136.785,-79.754733)">
+    <path
+       style="fill:#2979ce;fill-opacity:1;stroke-width:0.01870714"
+       inkscape:connector-curvature="0"
+       id="path17"
+       d="m 145.60506,80.182554 -0.006,2.722052 H 136.785 l 0.008,-2.720371 c 0,0 0.0875,-0.236405 0.1788,-0.315741 0.0781,-0.06785 0.28873,-0.113761 0.28873,-0.113761 h 8.04365 c 0,0 0.16563,0.08635 0.21783,0.159709 0.0543,0.0762 0.0758,0.253624 0.0826,0.268112 z"
+       sodipodi:nodetypes="ccccaccac" />
+    <path
+       style="fill:#448aff;stroke-width:0.01721449"
+       inkscape:connector-curvature="0"
+       id="path19"
+       d="m 145.60506,80.182554 -4.40469,2.330948 -4.38956,-2.34359 -0.0174,0.01432 v 3.981857 c 0,0.227823 0.0925,0.434397 0.24235,0.583948 0.14989,0.149551 0.35619,0.242347 0.58394,0.242347 h 7.16124 c 0.26305,0 0.49498,-0.125813 0.64613,-0.317795 0.11103,-0.140473 0.18016,-0.315643 0.18016,-0.5085 v -3.981857 z m 0,0" />
+    <path
+       style="fill:#2979ff;stroke-width:0.01721449"
+       inkscape:connector-curvature="0"
+       id="path21"
+       d="m 141.20037,82.513502 -1.2568,-0.67123 -2.90776,2.908037 c 0.14962,0.149551 0.35619,0.242347 0.58394,0.242347 h 7.16124 c 0.26305,0 0.49498,-0.125813 0.64614,-0.317795 l -2.87603,-2.876096 z m 0,0" />
+    <g
+       style="fill:#ffffff"
+       transform="matrix(0.01721449,0,0,0.01721449,136.79346,76.432822)"
+       id="g33">
+      <path
+         inkscape:connector-curvature="0"
+         id="path27"
+         d="m 240,401.23047 h 32 v 32 h -32 z m 0,0" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path29"
+         d="m 304,401.23047 h 32 v 32 h -32 z m 0,0" />
+      <path
+         inkscape:connector-curvature="0"
+         id="path31"
+         d="m 176,401.23047 h 32 v 32 h -32 z m 0,0" />
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:4.02751589px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#ff0000;fill-opacity:1;stroke:none;stroke-width:0.10068788"
+       x="96.371574"
+       y="122.57767"
+       id="text852"
+       transform="scale(1.4858295,0.67302474)"><tspan
+         sodipodi:role="line"
+         id="tspan850"
+         x="96.371574"
+         y="122.57767"
+         style="fill:#ff0000;stroke-width:0.10068788">!</tspan></text>
+  </g>
+</svg>
